@@ -1,0 +1,36 @@
+{
+  "pages":[
+    "pages/mine/index",
+    "pages/login/index",
+    "pages/test/index",
+    "pages/form/index",
+    "pages/index/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "易仓科技",
+    "navigationBarTextStyle":"black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#252525",
+    "selectedColor": "#1D4E89",
+    "backgroundColor": "#FFFFFF",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/assets/images/tabbar/main.png",
+        "selectedIconPath": "/assets/images/tabbar/main_active.png"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的",
+        "iconPath": "/assets/images/tabbar/mine.png",
+        "selectedIconPath": "/assets/images/tabbar/mine_active.png"
+      }
+    ]
+  }
+}

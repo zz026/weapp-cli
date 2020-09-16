@@ -1,0 +1,37 @@
+<view>
+  <van-button type="primary" bindtap="openLoading">openLoading</van-button>
+  <van-button bindtap="confrim">Confrim</van-button>
+  <van-button bindtap="alert">Alert</van-button>
+  <van-button bindtap="upload">上传图片</van-button>
+  <van-button type="primary" bindtap="goHome">goHome</van-button>
+  <van-button type="primary" bindtap="goForm">goForm</van-button>
+  <van-button type="primary" bindtap="ajax">ajax</van-button>
+  <van-divider />
+
+  <!-- 最多显示两行 -->
+  <view class="multi-ellipsis--l2">
+    这是一段最多显示两行的文字，后面的内容会省略
+    这是一段最多显示两行的文字，后面的内容会省略
+    这是一段最多显示两行的文字，后面的内容会省略
+    这是一段最多显示两行的文字，后面的内容会省略
+    这是一段最多显示两行的文字，后面的内容会省略
+  </view>
+  <van-divider />
+
+  <!-- 最多显示三行 -->
+  <view class="multi-ellipsis--l3">
+    这是一段最多显示三行的文字，后面的内容会省略
+    这是一段最多显示三行的文字，后面的内容会省略
+    这是一段最多显示三行的文字，后面的内容会省略
+    这是一段最多显示三行的文字，后面的内容会省略
+    这是一段最多显示三行的文字，后面的内容会省略
+  </view>
+  <van-divider />
+
+  <view>
+    表单带回来的内容：
+    <view>姓名：{{form.name}}</view>
+    <view>手机号{{form.tel}}</view>
+  </view>
+
+</view>

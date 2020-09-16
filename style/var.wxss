@@ -1,0 +1,18 @@
+page {
+  /* 定义主题颜色 */
+  --themeColor: #f15928;
+  /* 蓝色主色调 */
+  --primaryColor:  #5D62DA;
+  /* 正常字体颜色 */
+  --defaultColor:#262745;
+  /* 次要文字颜色 */
+  --subColor: #65686F;
+  /* 占位文字颜色 */
+  --placeholderColor: #9297A0;
+  /* 成功文字颜色 */
+  --successColor: #00BE00;
+  /* 失败文字颜色 */
+  --errorColor: #F05413;
+  /* 背景色 */
+  --bgColor: #F4F4F4;
+}

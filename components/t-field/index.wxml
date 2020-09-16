@@ -1,0 +1,17 @@
+<view class="t-field">
+  <view
+    class="t-field-label"
+    style="width:{{labelWidth}}"
+  >
+    {{label}}
+  </view>
+  <input
+    class="t-field-input"
+    name="{{name}}"
+    value="{{value}}"
+    placeholder="{{placeholder}}"
+    placeholder-class="placeholder-class"
+    bindinput="getInputValue"
+  />
+  <slot />
+</view>

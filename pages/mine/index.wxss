@@ -1,0 +1,104 @@
+.name_box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 400rpx;
+  padding: 0 30rpx;
+  padding-top: 40rpx;
+  color:#fff;
+}
+.name_box .bg {
+  height: 400rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  display: block;
+  width: 100%;
+}
+.name_box .navbar {
+  position: absolute;
+  top: 55rpx;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 36rpx;
+}
+.name_box .headImg {
+  display: inline-block;
+  width: 110rpx;
+  height: 110rpx;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 40rpx;
+}
+.name_box .userNickName {
+  font-size: 32rpx;
+}
+.name_box .sysName {
+  font-size: 24rpx;
+  margin-top: 10rpx;
+}
+.name_box .name_box_card {
+  position: absolute;
+  left: 30rpx;
+  right: 30rpx;
+  background-color: #fff;
+  bottom: -80rpx;
+  border-radius: 8rpx;
+  z-index: 10;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+}
+.name_box_card .left {
+  flex: 1
+}
+.name_box_card .left .label {
+  font-size: 24rpx;
+  color: #565656;
+  margin-bottom: 20rpx;
+  padding-left: 20rpx;
+}
+.name_box_card .left .prefix_money {
+  color: #F54A23;
+  font-size: 24rpx;
+}
+.name_box_card .left .money {
+  color: #F54A23;
+  font-size: 40rpx;
+}
+.name_box_card button {
+  width: 180rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+  background-color: var(--primaryColor);
+  color: #fff;
+  font-size: 28rpx;
+}
+
+.grey_bg {
+  height: 110rpx;
+  background-color: #F7F7F7;
+}
+
+.menu_list {
+  height: 100rpx;
+  margin: 0 30rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #E4E4E4;
+  position: relative;
+}
+.menu_list image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 30rpx;
+}
+.menu_list .right-icon {
+  position: absolute;
+  right: 0;
+}

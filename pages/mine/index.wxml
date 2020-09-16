@@ -1,0 +1,38 @@
+<!-- /pages/mine/index -->
+
+<view class="name_box">
+  <image src="/assets/images/mine/bg.png" class="bg" />
+  <!-- <view class="navbar">我的账户</view> -->
+  <open-data type="userAvatarUrl" class="headImg"></open-data>
+  <view>
+    <open-data type="userNickName" class="userNickName"></open-data>
+    <view class="sysName">显示订单系统的账号</view>
+  </view>
+  <view class="name_box_card">
+    <view class="left">
+      <view class="label">账户余额(元)</view>
+      <view>
+        <text class="prefix_money">¥ </text>
+        <text class="money">3,120,011</text>
+      </view>
+    </view>
+    <button>充值</button>
+  </view>
+</view>
+
+<view class="grey_bg"></view>
+
+<view
+  bindtap="goPath"
+>
+  <view
+    wx:for="{{menuList}}"
+    wx:key="id"
+    class="menu_list"
+    data-path="{{item.path}}"
+  >
+    <image src="{{item.image}}" />
+    {{item.name}}
+    <view class="right-icon"></view>
+  </view>
+</view>

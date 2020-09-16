@@ -1,0 +1,23 @@
+
+.logo_box {
+  height: 350rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo_box image {
+  width: 400rpx;
+  height: 150rpx;
+}
+
+.login_form .login_btn {
+  border-radius: 40rpx;
+  margin: 0 30rpx;
+  box-sizing: border-box;
+  background-color: var(--primaryColor);
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  color: #fff;
+  margin-top: 60rpx;
+}

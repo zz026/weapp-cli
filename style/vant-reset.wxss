@@ -1,0 +1,4 @@
+page .van-button--primary {
+  background-color: var(--primaryColor);
+  border: 0;
+}

@@ -1,0 +1,27 @@
+<!-- /pages/login/index -->
+
+  <view class="logo_box">
+    <image src="https://www.baidu.com/img/flexible/logo/pc/result.png" />
+  </view>
+
+<form
+  class="login_form"
+  bindsubmit="submitForm"
+>
+  <t-field
+    label="用户名"
+    label-width="90rpx"
+    name="name"
+    value="{{ form.name }}"
+  />
+  <t-field
+    label="密码"
+    label-width="90rpx"
+    name="password"
+    value="{{ form.password }}"
+  />
+  <button
+    class="login_btn"
+    form-type="submit"
+  >登录</button>
+</form>
