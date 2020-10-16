@@ -41,7 +41,7 @@ Page({
     this.WxValidate = new WxValidate(rules, messages)
   },
 
-  submitForm(e) {
+  async submitForm(e) {
     const params = e.detail.value
     this.setData({
       form: params
@@ -56,7 +56,8 @@ Page({
     }
     
     T_Toast('成功', 'success')
-    wx.$router.back('pages/test/index', {
+    const page = await wx.$router.back('pages/test/index')
+    page.setData({
       form: params
     })
   },

@@ -10,20 +10,19 @@ import {
 import wxPromisify from './wxPromisify'
 
 
-
 const _router = Symbol('_router');
 const _simple_arguments = Symbol('_simple_arguments');
 
 class Router {
   constructor() {
     this.tabList = [
-      '/pages/index/index',
+      '/pages/home/index',
       '/pages/mine/index'
     ]
   }
 
   // 私有方法 router跳转
-  [_router] = (method, path, data, fn) => {
+  [_router] = (method, path, data) => {
     try {
       const currentPages = getCurrentPages()
       const currentRoute = currentPages[currentPages.length - 1].route
@@ -33,12 +32,8 @@ class Router {
       }
       const url = objStringify(data, path) || ''
       // promise化
-      const cacheMethod = wxPromisify._wxPromisify(wx[method])
-
-      return new Promise((resolve) => {
-        cacheMethod({
-          url: `${path}?${url}`,
-        }).then(res => resolve(res))
+      return wxPromisify._wxPromisify(wx[method])({
+        url: `${path}${url ? ('?' + url) : ''}`,
       })
 
     } catch (err) {
@@ -77,35 +72,34 @@ class Router {
   /**
    * 页面返回
    * @param {String|Number} path 页面层数或路径
-   * @param {Object} data 如需跨页面setData,需在path传入页面路径，并传入data
+   * @param {Object} data 如需跨页面setData
+   * @retruns {Promise} promise返回当前page对象，可对其setdata 调用方法等操作
    */
-  back(path, data) {
+  back(path) {
     const _path = path[0] === '/' ? path.substring(1) : path
+    // 获取页面栈 翻转取倒序
+    const pages = getCurrentPages().reverse()
+    let routeIndex = -1
 
-    // 数字则直接返回层数
     if (checkTypeOf(_path) === 'Number') {
-      wx.navigateBack({
-        delta: _path
-      })
+      routeIndex = _path
+    } else if (checkTypeOf(_path) === 'String') {
+      routeIndex = pages.findIndex(val => val.route === _path)
     }
 
-    // 传入页面路径，则判断页面栈返回层数
-    if (checkTypeOf(_path) === 'String') {
-      // 返回页面后设值
-      const pages = getCurrentPages()
-      console.log('pages', pages)
-      // 翻转取倒序
-      const routeIndex = pages.reverse().findIndex(val => val.route === _path)
-      if (routeIndex === -1) {
-        throw new Error(_path + '不存在页面栈中！无法返回')
-      }
+    if (routeIndex === -1) {
+      throw new Error(_path + '不存在页面栈中！无法返回')
+    }
+      
+    return new Promise(resovle => {
       wx.navigateBack({
         delta: routeIndex,
-        success: () => {
-          data && pages[routeIndex].setData(data)
+        success() {
+          resovle(pages[routeIndex])
         }
       })
-    }
+    })
+
   }
 
 }

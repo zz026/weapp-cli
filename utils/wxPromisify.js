@@ -1,5 +1,5 @@
 /**
- * @description 微信api Promise化
+ * @description 微信api Promise化+柯里化
  * @returns promise化列表
  */
 function _wxPromisify(func) {
@@ -8,7 +8,7 @@ function _wxPromisify(func) {
   }
   return args => new Promise((resolve, reject) => {
     func(
-      Object.assign(args, {
+      Object.assign(args || {}, {
         success: resolve,
         fail: reject,
       })
@@ -19,9 +19,12 @@ function _wxPromisify(func) {
 // promise化列表
 export default {
   _wxPromisify,
+  login: _wxPromisify(wx.login),
   request: _wxPromisify(wx.request),
   showToast: _wxPromisify(wx.showToast),
   showModal: _wxPromisify(wx.showModal),
   chooseImage: _wxPromisify(wx.chooseImage),
-  uploadFile: _wxPromisify(wx.uploadFile)
+  uploadFile: _wxPromisify(wx.uploadFile),
+  navigateBack: _wxPromisify(wx.navigateBack),
+  setClipboardData: _wxPromisify(wx.setClipboardData),
 }

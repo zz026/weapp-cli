@@ -4,7 +4,7 @@
  * @Description: 二次封装wx常用api
  */
 
-import promisifyList from './wxPromisify'
+import wxPromisify from './wxPromisify'
 
 // loading状态
 let _isLoading = false
@@ -25,12 +25,16 @@ export function T_Toast(title, icon = 'none', duration = 3000) {
   if (icon !== 'none' && title.length > 7) {
     throw new Error('T_Toast Error: title more then 7 !')
   }
-  return promisifyList.showToast({
-    title,
-    icon,
-    mask: false,
-    duration
-  })
+
+
+  setTimeout(() => {
+    return wxPromisify.showToast({
+      title,
+      icon,
+      mask: false,
+      duration
+    })
+  }, 100)
 }
 
 /**
@@ -40,7 +44,7 @@ export function T_Toast(title, icon = 'none', duration = 3000) {
  * @returns {Promise}
 */
 export function T_Alert(content='', params = {}) {
-  return promisifyList.showModal({
+  return wxPromisify.showModal({
     content,
     ...params,
     showCancel: false,
@@ -60,7 +64,7 @@ export function T_Confirm(content = '确认此操作?', params = {}) {
     wx.showModal({
       title: params.title || '提示',
       content,
-      confirmColor: '#1A4677',
+      confirmColor: '#5D62DA',
       cancelColor: '#000000',
       ...params, 
       success: res => {
@@ -95,7 +99,7 @@ export function T_Loading(title = '加载中') {
  */
 export function T_HideLoading() {
   _isLoading = false
-  wx.hideLoading()
+  wx.hideLoading();
 }
 
 
@@ -105,12 +109,12 @@ export function T_HideLoading() {
  * @returns {Promise}
  */
 export function T_ChooseImage(params = {}) {
-  return new Promise(async (resolve, reject) => {
+  return new Promise(async (resolve) => {
     // 最大尺寸 10M
     const maxSize = 1024 * 1024 * 10
     // 文件格式
     try {
-      const { tempFilePaths, tempFiles } = await promisifyList.chooseImage({
+      const { tempFilePaths, tempFiles } = await wxPromisify.chooseImage({
         count: 1, // 最多可以选择的图片张数
         sizeType: ['original'], // ['original', 'compressed'] 所选的图片的尺寸 原图 压缩 
         sourceType: ['album', 'camera'], // ['album', 'camera'] 选择图片的来源 相册 相机
@@ -122,20 +126,19 @@ export function T_ChooseImage(params = {}) {
         T_Toast('图片过大, 请重新上传')
         return
       }
-      // 判断文件类型 (微信官方不推荐使用此方法判断文件类型)
-      // const fileType = ['jpeg', 'jpg', 'png']
-      // const errorFile = tempFiles.some(val => {
-      //   const path = val.path
-      //   const file_suffix = path.substr(path.lastIndexOf('.') + 1)
-      //   return !fileType.includes(file_suffix)
-      // })
-      // if (errorFile) {
-      //   T_Toast('文件类型错误，只能选择 ' + fileType.toString() + ' 格式的图片')
-      //   return
-      // }
+      // 判断文件类型
+      const fileType = ['jpeg', 'jpg', 'png']
+      const errorFile = tempFiles.some(val => {
+        const path = val.path
+        const file_suffix = path.substr(path.lastIndexOf('.') + 1)
+        return !fileType.includes(file_suffix)
+      })
+      if (errorFile) {
+        T_Toast('文件类型错误，只能选择 ' + fileType.toString() + ' 格式的图片')
+        return
+      }
       resolve(tempFilePaths)
     } catch(err) {
-      reject('chooseImage error!', err)
     }
   })
 }

@@ -16,14 +16,16 @@ Object.defineProperties(wx, {
     writable: false
   },
   '$http': {
-    value: new Request()
+    value: new Request({
+      baseUrl: 'https://ctms-dev.haioupai.com/'
+    })
   }
 })
 
 //app.js
 App({
   globalData: {
-    userInfo: null
+    userInfo: {}
   },
   onLaunch: function () {
   },
